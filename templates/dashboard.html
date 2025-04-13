@@ -49,15 +49,16 @@
     </div>
 </body>
 <script>
-row.addEventListener("click", function () {
-    if (this.classList.contains("clicked-row")) {
-        this.classList.remove("clicked-row");
-    } else {
-        rows.forEach(r => r.classList.remove("clicked-row"));
-        this.classList.add("clicked-row");
-    }
-});
+    document.addEventListener("DOMContentLoaded", function () {
+        const rows = document.querySelectorAll("tbody tr");
 
+        rows.forEach(row => {
+            row.addEventListener("click", function () {
+                rows.forEach(r => r.classList.remove("clicked-row")); // remove from others
+                this.classList.add("clicked-row"); // add to clicked row
+            });
+        });
+    });
 </script>
 
 </html>
