@@ -1,82 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Dashboard</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f4f4f4;
-            padding: 30px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        table {
-            width: 90%;
-            margin: auto;
-            border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid #ccc;
-            text-align: center;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h2>Guest Dashboard</h2>
-    <div style="text-align: center; margin-bottom: 20px;">
-        <a href="/add-guest">
-            <button style="padding: 10px 20px; background-color: #2196F3; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                Add Guest
-            </button>
-        </a>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                {% for column in columns %}
-                    <th>{{ column }}</th>
-                {% endfor %}
-                <th>Actions</th> <!-- added for update part-->
-            </tr>
-        </thead>
-        <tbody>
-            {% for guest in guests %}
+    <div class="container">
+        <h2>Guest Dashboard</h2>
+        <a class="btn" href="{{ url_for('add_guest') }}">➕ Add Guest</a>
+        <table>
+            <thead>
                 <tr>
-                    {% for value in guest %}
-                        <td>{{ value }}</td>
+                    {% for column in columns %}
+                        <th>{{ column }}</th>
                     {% endfor %}
-                    <td>
-                        <!--edit button-->
-                        <a href="/edit-guest/{{ guest[0] }}">
-                            <button style="padding: 5px 10px; background-color: orange; color: white; border: none; border-radius: 4px; cursor: pointer;">
-                                Edit
-                            </button>
-                        </a>
-                        
-                        <!-- Delete Button -->
-                    <form method="POST" action="/delete-guest/{{ guest[0] }}" style="display:inline;">
-                        <button type="submit" onclick="return confirm('Are you sure you want to delete this guest?');" 
-                        style="padding: 5px 10px; background-color: red; color: white; border: none; border-radius: 4px; cursor: pointer;">
-                        Delete
-                        </button>
-                    </form>
-                    </td>
+                    <th>Actions</th>
                 </tr>
-            {% endfor %}
-        </tbody>        
-    </table>
+            </thead>
+            <tbody>
+                {% for guest in guests %}
+                    <tr>
+                        {% for value in guest %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                        <td>
+                            <a class="btn-edit" href="{{ url_for('edit_guest', id=guest[0]) }}">✏️ Edit</a>
+                            <form method="POST" action="{{ url_for('delete_guest', guest_id=guest[0]) }}" class="inline-form">
+                                <button type="submit" class="btn-delete" onclick="return confirm('Delete this guest?')">🗑️ Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
