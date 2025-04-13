@@ -65,19 +65,19 @@ def edit_guest(id):
         email = request.form['email']
         room_no = request.form['room_no']
 
-        query = "UPDATE guest SET name=%s, phone=%s, email=%s, room_no=%s WHERE id=%s"
+        # ✅ Use correct column name instead of `id`
+        query = "UPDATE guest SET name=%s, phone=%s, email=%s, room_no=%s WHERE guest_id=%s"
         cursor.execute(query, (name, phone, email, room_no, id))
         db.commit()
 
         return redirect(url_for('dashboard'))
     
-    query = "SELECT * FROM guest WHERE id = %s"
+    # ✅ Use correct column name instead of `id`
+    query = "SELECT * FROM guest WHERE guest_id = %s"
     cursor.execute(query, (id,))
     guest = cursor.fetchone()
 
     return render_template('edit_guest.html', guest=guest)
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
