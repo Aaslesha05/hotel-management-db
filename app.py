@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 from datetime import datetime
@@ -35,7 +34,10 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    query = """
+    guest_name = request.args.get('guest_name', '').lower()
+    room_type = request.args.get('room_type', '').lower()
+
+    base_query = """
         SELECT g.Guest_ID, g.Guest_Name, g.Phone, g.Email, g.Address, g.Aadhar_No, g.Registration_Date,
                r.Room_Number, rt.Type_Name
         FROM Guest g
@@ -43,9 +45,24 @@ def dashboard():
         LEFT JOIN Room r ON b.Room_ID = r.Room_ID
         LEFT JOIN RoomType rt ON r.Room_Type_ID = rt.Room_Type_ID
     """
-    cursor.execute(query)
+
+    filters = []
+    params = []
+
+    if guest_name:
+        filters.append("LOWER(g.Guest_Name) LIKE %s")
+        params.append(f"%{guest_name}%")
+    if room_type:
+        filters.append("LOWER(rt.Type_Name) LIKE %s")
+        params.append(f"%{room_type}%")
+
+    if filters:
+        base_query += " WHERE " + " AND ".join(filters)
+
+    cursor.execute(base_query, params)
     guests = cursor.fetchall()
     column_names = ["Guest_ID", "Guest_Name", "Phone", "Email", "Address", "Aadhar_No", "Registration_Date", "Room_Number", "Room_Type"]
+
     return render_template('dashboard.html', guests=guests, columns=column_names)
 
 @app.route('/add-guest', methods=['GET', 'POST'])

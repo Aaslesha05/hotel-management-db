@@ -12,6 +12,12 @@
         <a class="btn-add" href="{{ url_for('add_guest') }}" title="Add New Guest">
             <i class="fa-solid fa-plus fa-bounce"></i>
         </a>
+        <form method="GET" action="{{ url_for('dashboard') }}" class="search-form">
+            <input type="text" name="guest_name" placeholder="Search by Guest Name" value="{{ request.args.get('guest_name', '') }}">
+            <input type="text" name="room_type" placeholder="Search by Room Type" value="{{ request.args.get('room_type', '') }}">
+            <button type="submit" class="btn search-btn"><i class="fa fa-search fa-flip"></i> Search</button>
+        </form>
+               
         <table>
             <thead>
                 <tr>
@@ -42,4 +48,16 @@
         </table>
     </div>
 </body>
+<script>
+row.addEventListener("click", function () {
+    if (this.classList.contains("clicked-row")) {
+        this.classList.remove("clicked-row");
+    } else {
+        rows.forEach(r => r.classList.remove("clicked-row"));
+        this.classList.add("clicked-row");
+    }
+});
+
+</script>
+
 </html>
