@@ -6,8 +6,16 @@
 }
 
 body {
+    padding: 40px 20px; /* adds spacing at top/bottom and left/right */
+    box-sizing: border-box;
+}
+
+
+body {
     font-family: 'Segoe UI', sans-serif;
     background: #f0f2f5;
+    background: url('bg.png') no-repeat center center fixed;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,12 +24,13 @@ body {
 
 /* Container */
 .container {
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    max-width: 500px;
-    width: 100%;
+    background: rgba(255, 255, 255, 0.45); /* slightly more transparent */
+    padding: 30px; /* reduced padding */
+    border-radius: 16px;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.12);
+    max-width: 400px; /* slightly smaller */
+    width: 90%; /* responsive */
+    line-height: 2rem;
     transition: all 0.3s ease;
 }
 
