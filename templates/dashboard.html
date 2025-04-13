@@ -3,18 +3,23 @@
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
     <div class="container">
         <h2>Guest Dashboard</h2>
-        <a class="btn" href="{{ url_for('add_guest') }}">➕ Add Guest</a>
+        <a class="btn-add" href="{{ url_for('add_guest') }}" title="Add New Guest">
+            <i class="fa-solid fa-plus fa-bounce"></i>
+        </a>
         <table>
             <thead>
                 <tr>
                     {% for column in columns %}
                         <th>{{ column }}</th>
                     {% endfor %}
-                    <th>Actions</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +30,8 @@
                         {% endfor %}
                         <td>
                             <a class="btn-edit" href="{{ url_for('edit_guest', id=guest[0]) }}">✏️ Edit</a>
+                        </td>
+                        <td>
                             <form method="POST" action="{{ url_for('delete_guest', guest_id=guest[0]) }}" class="inline-form">
                                 <button type="submit" class="btn-delete" onclick="return confirm('Delete this guest?')">🗑️ Delete</button>
                             </form>

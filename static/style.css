@@ -1,90 +1,181 @@
-/* style.css */
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+/* Reset & Base */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 50px 15px;
+}
+
+/* Container */
 .container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 40px auto;
-    background-color: #fff;
-    padding: 25px 30px;
+    background: white;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1300px;
 }
 
 h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
     text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
 }
 
-a.btn {
-    display: inline-block;
-    background-color: #4CAF50;
+h2::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background-color: #5c6bc0;
+    display: block;
+    margin: 7px auto 0;
+    border-radius: 2px;
+}
+
+/* Add Guest Button */
+.btn {
+    background-color: #5c6bc0;
     color: white;
-    padding: 10px 16px;
     text-decoration: none;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
 }
 
-a.btn:hover {
-    background-color: #45a049;
+.btn:hover {
+    background-color: #3f51b5;
 }
 
+/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    border-radius: 20px;
 }
 
 th, td {
     padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
 th {
-    background-color: #007BFF;
+    background-color: #687ae5;
     color: white;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
+/* Action Buttons */
 .btn-edit, .btn-delete {
-    padding: 6px 10px;
-    border: none;
-    border-radius: 4px;
+    padding: 8px 14px;
+    border-radius: 5px;
     text-decoration: none;
     color: white;
+    border: none;
     cursor: pointer;
     font-size: 14px;
-    margin-right: 5px;
+    transition: background 0.3s ease;
 }
 
 .btn-edit {
-    background-color: #ffc107;
+    background-color: #27ae60;
 }
 
 .btn-edit:hover {
-    background-color: #e0a800;
+    background-color: #219150;
 }
 
 .btn-delete {
-    background-color: #dc3545;
+    background-color: #e74c3c;
 }
 
 .btn-delete:hover {
-    background-color: #c82333;
+    background-color: #c0392b;
 }
 
+/* Inline Form for Delete Button */
 .inline-form {
     display: inline;
+}
+/* Floating Add Button */
+.btn-add {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #5c6bc0;
+    color: white;
+    padding: 16px;
+    border-radius: 50%;
+    font-size: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background 0.3s ease, transform 0.2s;
+}
+
+.btn-add:hover {
+    background-color: #3f51b5;
+    transform: scale(1.2);
+}
+
+.btn-add i {
+    color: #fff;
+}
+/* Table Row Hover Effect */
+tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    tr {
+        margin-bottom: 15px;
+    }
+
+    td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        width: 45%;
+        padding-left: 10px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    th {
+        display: none;
+    }
 }
