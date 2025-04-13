@@ -1,0 +1,84 @@
+/* General body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container box */
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 25px;
+}
+
+/* Labels and inputs */
+form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="date"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Submit button */
+.btn {
+    margin-top: 25px;
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Back button */
+.btn-back {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.btn-back:hover {
+    color: #0056b3;
+}

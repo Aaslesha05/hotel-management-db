@@ -1,112 +1,80 @@
-/* Reset & Base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* style.css */
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
-    line-height: 1.6;
-    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 0;
 }
 
-/* Container */
 .container {
-    max-width: 900px;
-    margin: auto;
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
     background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Headings */
 h2 {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
     color: #333;
+    margin-bottom: 20px;
 }
 
-/* Form Styles */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+a.btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
-form label {
-    font-weight: 500;
-    margin-bottom: 4px;
+a.btn:hover {
+    background-color: #45a049;
 }
 
-form input, form select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-}
-
-/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #fff;
+    margin-top: 10px;
 }
 
-thead {
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
     background-color: #007BFF;
     color: white;
 }
 
-table th, table td {
-    padding: 12px 16px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tbody tr:hover {
+tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Button Styles */
-.btn, .btn-edit, .btn-delete, .btn-back {
-    display: inline-block;
-    padding: 10px 18px;
+.btn-edit, .btn-delete {
+    padding: 6px 10px;
     border: none;
-    border-radius: 6px;
-    font-size: 15px;
-    cursor: pointer;
+    border-radius: 4px;
     text-decoration: none;
     color: white;
-    transition: background 0.2s ease;
-}
-
-.btn {
-    background-color: #007BFF;
-}
-
-.btn:hover {
-    background-color: #0056b3;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
 }
 
 .btn-edit {
     background-color: #ffc107;
-    color: #333;
 }
 
 .btn-edit:hover {
     background-color: #e0a800;
-    color: #fff;
 }
 
 .btn-delete {
@@ -114,68 +82,9 @@ tbody tr:hover {
 }
 
 .btn-delete:hover {
-    background-color: #bd2130;
-}
-
-.btn-back {
-    background-color: #6c757d;
-}
-
-.btn-back:hover {
-    background-color: #5a6268;
+    background-color: #c82333;
 }
 
 .inline-form {
     display: inline;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
-
-    table, thead, tbody, th, td, tr {
-        display: block;
-        width: 100%;
-    }
-
-    thead {
-        display: none;
-    }
-
-    table tr {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        margin-bottom: 15px;
-        padding: 10px;
-        border-radius: 6px;
-    }
-
-    table td {
-        position: relative;
-        padding-left: 50%;
-        text-align: left;
-        border: none;
-        border-bottom: 1px solid #eee;
-    }
-
-    table td::before {
-        position: absolute;
-        left: 15px;
-        top: 12px;
-        white-space: nowrap;
-        font-weight: bold;
-        content: attr(data-label);
-    }
-
-    table td:last-child {
-        border-bottom: none;
-    }
-
-    .btn, .btn-edit, .btn-delete, .btn-back {
-        width: 100%;
-        text-align: center;
-        margin-top: 10px;
-    }
 }
