@@ -10,7 +10,7 @@ body {
     background-color: #f0f2f5;
     color: #333;
     line-height: 1.6;
-    padding: 40px;
+    padding: 40px 20px;
 }
 
 /* Container */
@@ -31,14 +31,35 @@ h2 {
     color: #333;
 }
 
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+form label {
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
 /* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: #fff;
 }
 
-table thead {
+thead {
     background-color: #007BFF;
     color: white;
 }
@@ -49,42 +70,25 @@ table th, table td {
     border: 1px solid #ddd;
 }
 
-table tbody tr:nth-child(even) {
+tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-table tbody tr:hover {
+tbody tr:hover {
     background-color: #f1f1f1;
-}
-
-/* Form Styles */
-form label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 500;
-}
-
-form input, form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 18px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
 }
 
 /* Button Styles */
 .btn, .btn-edit, .btn-delete, .btn-back {
     display: inline-block;
     padding: 10px 18px;
-    margin-top: 10px;
     border: none;
     border-radius: 6px;
     font-size: 15px;
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.2s ease;
     color: white;
+    transition: background 0.2s ease;
 }
 
 .btn {
@@ -102,6 +106,7 @@ form input, form select {
 
 .btn-edit:hover {
     background-color: #e0a800;
+    color: #fff;
 }
 
 .btn-delete {
@@ -124,7 +129,7 @@ form input, form select {
     display: inline;
 }
 
-/* Responsive */
+/* Responsive Styles */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
@@ -132,32 +137,45 @@ form input, form select {
 
     table, thead, tbody, th, td, tr {
         display: block;
+        width: 100%;
     }
 
-    table thead {
+    thead {
         display: none;
     }
 
     table tr {
-        margin-bottom: 15px;
         background-color: #fff;
         border: 1px solid #ddd;
-        border-radius: 6px;
+        margin-bottom: 15px;
         padding: 10px;
+        border-radius: 6px;
     }
 
     table td {
-        padding: 10px;
-        text-align: right;
         position: relative;
+        padding-left: 50%;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid #eee;
     }
 
     table td::before {
-        content: attr(data-label);
         position: absolute;
-        left: 10px;
-        width: 50%;
+        left: 15px;
+        top: 12px;
+        white-space: nowrap;
         font-weight: bold;
-        text-align: left;
+        content: attr(data-label);
+    }
+
+    table td:last-child {
+        border-bottom: none;
+    }
+
+    .btn, .btn-edit, .btn-delete, .btn-back {
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
     }
 }

@@ -8,6 +8,7 @@
     <div class="container">
         <h2>Add New Guest</h2>
         <form method="POST">
+            <label>Guest ID:</label><input type="number" name="guest_id" required>
             <label>Name:</label><input type="text" name="guest_name" required>
             <label>Phone:</label><input type="text" name="phone" required>
             <label>Email:</label><input type="email" name="email" required>
@@ -15,7 +16,7 @@
             <label>Aadhar No:</label><input type="text" name="aadhar_no" required>
             <label>Registration Date:</label><input type="date" name="registration_date" required>
             <button type="submit" class="btn">Add Guest</button>
-        </form>
+        </form>        
         <a href="{{ url_for('dashboard') }}" class="btn-back">⬅️ Back to Dashboard</a>
     </div>
 </body>

@@ -43,22 +43,24 @@ def dashboard():
 @app.route('/add-guest', methods=['GET', 'POST'])
 def add_guest():
     if request.method == 'POST':
+        guest_id = request.form['guest_id']
         guest_name = request.form['guest_name']
         phone = request.form['phone']
         email = request.form['email']
         address = request.form['address']
         aadhar_no = request.form['aadhar_no']
-        registration_date = request.form['registration_date']  # format: YYYY-MM-DD
+        registration_date = request.form['registration_date']
 
         query = """INSERT INTO guest 
-            (Guest_Name, Phone, Email, Address, Aadhar_No, Registration_Date) 
-            VALUES (%s, %s, %s, %s, %s, %s)"""
-        cursor.execute(query, (guest_name, phone, email, address, aadhar_no, registration_date))
+            (Guest_ID, Guest_Name, Phone, Email, Address, Aadhar_No, Registration_Date) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s)"""
+        cursor.execute(query, (guest_id, guest_name, phone, email, address, aadhar_no, registration_date))
         db.commit()
 
         return redirect(url_for('dashboard'))
 
     return render_template('add_guest.html')
+
 
 @app.route('/edit-guest/<int:id>', methods=['GET', 'POST'])
 def edit_guest(id):
