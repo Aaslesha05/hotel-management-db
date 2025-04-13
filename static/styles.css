@@ -18,7 +18,7 @@ body {
 
 /* Login Container */
 .login-container {
-    background-color: rgba(255, 255, 255, 0.60);  /* Transparent white */
+    background-color: rgba(255, 255, 255, 0.50);  /* Transparent white */
     padding: 40px 35px;
     border-radius: 12px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);

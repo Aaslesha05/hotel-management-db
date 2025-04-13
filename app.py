@@ -1,3 +1,4 @@
+# app.py
 from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 from datetime import datetime
@@ -34,10 +35,17 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
-    query = "SELECT * FROM guest"
+    query = """
+        SELECT g.Guest_ID, g.Guest_Name, g.Phone, g.Email, g.Address, g.Aadhar_No, g.Registration_Date,
+               r.Room_Number, rt.Type_Name
+        FROM Guest g
+        LEFT JOIN Booking b ON g.Guest_ID = b.Guest_ID AND b.Booking_Status = 'Active'
+        LEFT JOIN Room r ON b.Room_ID = r.Room_ID
+        LEFT JOIN RoomType rt ON r.Room_Type_ID = rt.Room_Type_ID
+    """
     cursor.execute(query)
     guests = cursor.fetchall()
-    column_names = [desc[0] for desc in cursor.description]
+    column_names = ["Guest_ID", "Guest_Name", "Phone", "Email", "Address", "Aadhar_No", "Registration_Date", "Room_Number", "Room_Type"]
     return render_template('dashboard.html', guests=guests, columns=column_names)
 
 @app.route('/add-guest', methods=['GET', 'POST'])
@@ -60,7 +68,6 @@ def add_guest():
         return redirect(url_for('dashboard'))
 
     return render_template('add_guest.html')
-
 
 @app.route('/edit-guest/<int:id>', methods=['GET', 'POST'])
 def edit_guest(id):

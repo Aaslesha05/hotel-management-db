@@ -1,14 +1,14 @@
+<!-- dashboard.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 <body>
     <div class="container">
-        <h2>Guest Dashboard</h2>
+        <h2 style="text-align: center;">Guest Dashboard</h2>
         <a class="btn-add" href="{{ url_for('add_guest') }}" title="Add New Guest">
             <i class="fa-solid fa-plus fa-bounce"></i>
         </a>
@@ -26,7 +26,7 @@
                 {% for guest in guests %}
                     <tr>
                         {% for value in guest %}
-                            <td>{{ value }}</td>
+                            <td>{{ value if value else 'N/A' }}</td>
                         {% endfor %}
                         <td>
                             <a class="btn-edit" href="{{ url_for('edit_guest', id=guest[0]) }}">✏️ Edit</a>

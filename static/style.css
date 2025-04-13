@@ -22,6 +22,7 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 1300px;
+    overflow-x: auto;
 }
 
 h2 {
@@ -66,12 +67,14 @@ table {
     border-collapse: collapse;
     margin-top: 10px;
     border-radius: 20px;
+    min-width: 1000px; /* ensures all columns fit */
 }
 
 th, td {
     padding: 12px 15px;
     text-align: center;
     border: 1px solid #ddd;
+    white-space: nowrap;
 }
 
 th {
@@ -115,6 +118,7 @@ tbody tr:nth-child(even) {
 .inline-form {
     display: inline;
 }
+
 /* Floating Add Button */
 .btn-add {
     position: fixed;
@@ -139,13 +143,14 @@ tbody tr:nth-child(even) {
 .btn-add i {
     color: #fff;
 }
+
 /* Table Row Hover Effect */
 tbody tr:hover {
     background-color: #f1f1f1;
     cursor: pointer;
 }
 
-/* Responsive */
+/* Responsive Table */
 @media screen and (max-width: 768px) {
     .container {
         padding: 20px;
@@ -157,12 +162,17 @@ tbody tr:hover {
 
     tr {
         margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
     }
 
     td {
         text-align: right;
         padding-left: 50%;
         position: relative;
+        border: none;
+        border-bottom: 1px solid #ddd;
     }
 
     td::before {
@@ -173,9 +183,15 @@ tbody tr:hover {
         padding-left: 10px;
         font-weight: bold;
         text-align: left;
+        color: #444;
     }
 
     th {
         display: none;
+    }
+
+    .btn-edit, .btn-delete {
+        display: inline-block;
+        margin: 5px 0;
     }
 }
