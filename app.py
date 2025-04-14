@@ -9,7 +9,7 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",
     password="root123",
-    database="hotel_management"
+    database="Hotel_management"
 )
 
 cursor = db.cursor()
@@ -41,9 +41,9 @@ def dashboard():
         SELECT g.Guest_ID, g.Guest_Name, g.Phone, g.Email, g.Address, g.Aadhar_No, g.Registration_Date,
                r.Room_Number, rt.Type_Name
         FROM Guest g
-        LEFT JOIN Booking b ON g.Guest_ID = b.Guest_ID AND b.Booking_Status = 'Active'
+        LEFT JOIN Booking b ON g.Guest_ID = b.Guest_ID
         LEFT JOIN Room r ON b.Room_ID = r.Room_ID
-        LEFT JOIN RoomType rt ON r.Room_Type_ID = rt.Room_Type_ID
+        LEFT JOIN RoomType rt ON r.Type_ID = rt.Type_ID
     """
 
     filters = []
@@ -68,7 +68,6 @@ def dashboard():
 @app.route('/add-guest', methods=['GET', 'POST'])
 def add_guest():
     if request.method == 'POST':
-        guest_id = request.form['guest_id']
         guest_name = request.form['guest_name']
         phone = request.form['phone']
         email = request.form['email']
@@ -76,15 +75,18 @@ def add_guest():
         aadhar_no = request.form['aadhar_no']
         registration_date = request.form['registration_date']
 
-        query = """INSERT INTO guest 
-            (Guest_ID, Guest_Name, Phone, Email, Address, Aadhar_No, Registration_Date) 
-            VALUES (%s, %s, %s, %s, %s, %s, %s)"""
-        cursor.execute(query, (guest_id, guest_name, phone, email, address, aadhar_no, registration_date))
+        # Query to insert guest without ID (auto increment)
+        query = """INSERT INTO Guest 
+            (Guest_Name, Phone, Email, Address, Aadhar_No, Registration_Date) 
+            VALUES (%s, %s, %s, %s, %s, %s)"""
+        
+        cursor.execute(query, (guest_name, phone, email, address, aadhar_no, registration_date))
         db.commit()
 
         return redirect(url_for('dashboard'))
 
     return render_template('add_guest.html')
+
 
 @app.route('/edit-guest/<int:id>', methods=['GET', 'POST'])
 def edit_guest(id):
@@ -96,7 +98,7 @@ def edit_guest(id):
         aadhar_no = request.form['aadhar_no']
         registration_date = request.form['registration_date']
 
-        query = """UPDATE guest SET 
+        query = """UPDATE Guest SET 
             Guest_Name=%s, Phone=%s, Email=%s, Address=%s, Aadhar_No=%s, Registration_Date=%s 
             WHERE Guest_ID=%s"""
         cursor.execute(query, (guest_name, phone, email, address, aadhar_no, registration_date, id))
@@ -104,7 +106,7 @@ def edit_guest(id):
 
         return redirect(url_for('dashboard'))
 
-    query = "SELECT * FROM guest WHERE Guest_ID = %s"
+    query = "SELECT * FROM Guest WHERE Guest_ID = %s"
     cursor.execute(query, (id,))
     guest = cursor.fetchone()
 
@@ -112,7 +114,7 @@ def edit_guest(id):
 
 @app.route('/delete-guest/<int:guest_id>', methods=['POST'])
 def delete_guest(guest_id):
-    query = "DELETE FROM guest WHERE Guest_ID = %s"
+    query = "DELETE FROM Guest WHERE Guest_ID = %s"
     cursor.execute(query, (guest_id,))
     db.commit()
     return redirect('/dashboard')
