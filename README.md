@@ -124,7 +124,7 @@ Hotel-Management-System/
 │
 ├── Hotel_Management.sql
 ├── README.md
-└── ER_Diagram.png
+└── ER_diagram_Hotel_DBMS.pdf
 ```
 
 ---
@@ -151,7 +151,7 @@ Add your ER Diagram image here.
 Example:
 
 ```
-ER_Diagram.png
+ER_diagram_Hotel_DBMS.pdf
 ```
 
 ---
