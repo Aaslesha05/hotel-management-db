@@ -146,13 +146,7 @@ This project demonstrates:
 
 ## 📸 ER Diagram
 
-Add your ER Diagram image here.
-
-Example:
-
-```
-ER_diagram_Hotel_DBMS.pdf
-```
+📄 [View ER Diagram](ER_diagram_Hotel_DBMS.pdf)
 
 ---
 
