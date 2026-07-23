@@ -124,6 +124,7 @@ Hotel-Management-System/
 │
 ├── Hotel_Management.sql
 ├── README.md
+└── ER_Diagram.png
 ```
 
 ---
@@ -140,6 +141,18 @@ This project demonstrates:
 - Trigger Implementation
 - Stored Procedures
 - Real-world Database Modeling
+
+---
+
+## 📸 ER Diagram
+
+Add your ER Diagram image here.
+
+Example:
+
+```
+ER_Diagram.png
+```
 
 ---
 
